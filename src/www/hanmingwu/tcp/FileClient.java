@@ -1,7 +1,6 @@
 package www.hanmingwu.tcp;
 
-import java.io.DataOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.Socket;
 
 /**
@@ -17,13 +16,20 @@ public class FileClient {
         System.out.println("--client---");
         //请求连接
         Socket client=new Socket("localhost",8888);
-        //操作,创建了输出流对象
-        DataOutputStream dos=new DataOutputStream(client.getOutputStream());
+        //操作,文件拷贝
+        InputStream is=new BufferedInputStream(new FileInputStream("src/ndl.png"));
+        OutputStream os=new BufferedOutputStream(client.getOutputStream());
+        byte[] flush=new byte[1024];
+        int len=-1;
+        while((len=is.read(flush))!=-1){
+            os.write(flush,0,len);
 
-        String data="hello";
-        dos.writeUTF(data);
-        dos.flush();
-        dos.close();
+        }
+
+
+        os.flush();
+        is.close();
+        os.close();
 
         client.close();
 
