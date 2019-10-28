@@ -1,12 +1,12 @@
 package www.hanmingwu.chat02;
 /**
- * 多次消息
+ * 多次消息，多个用户正常收发消息
  */
 
 import java.io.*;
 import java.net.Socket;
 
-public class MultiClient {
+public class TMultiClient {
     public static void main(String[] args) throws IOException {
         System.out.println("----client----");
         //建立连接
